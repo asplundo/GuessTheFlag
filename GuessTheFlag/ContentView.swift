@@ -4,8 +4,10 @@ struct ContentView: View {
     
     @State var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State var correctAnswer = Int.random(in: 0...2)
+    @State var selectedAnswer = 0
     @State private var showingScore = false
     @State private var scoreTitle = ""
+    @State private var score = 0
     
     var body: some View {
         ZStack {
@@ -18,11 +20,11 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .fontWeight(.black)
                 }
-                .foregroundColor(.white)
                 .frame(minWidth: 0, maxWidth: .infinity)
                 ForEach(0..<3) { number in
                     Button(action: {
-                        self.flagTapped(number)
+                        self.selectedAnswer = number
+                        self.flagTapped()
                     }) {
                         Image(self.countries[number])
                             .renderingMode(.original)
@@ -31,20 +33,30 @@ struct ContentView: View {
                         .shadow(color: .black, radius: 2)
                     }
                 }
+                HStack {
+                    Text("Score: ")
+                    Spacer()
+                    Text("\(score)")
+                }.padding(.horizontal)
                 Spacer()
             }
+            .foregroundColor(.white)
         }.alert(isPresented: $showingScore) {
-            Alert(title: Text(scoreTitle), message: Text("Your score is ???"), dismissButton: .default(Text("Continue")) {
+            Alert(title: Text(scoreTitle), message: Text("Your score is \(score)"), dismissButton: .default(Text("Continue")) {
+                if self.selectedAnswer != self.correctAnswer {
+                    self.score = 0
+                }
                 self.askQuestion()
             })
         }
     }
     
-    func flagTapped(_ number: Int) {
-        if number == correctAnswer {
+    func flagTapped() {
+        if selectedAnswer == correctAnswer {
             scoreTitle = "correct"
+            score += 1
         } else {
-            scoreTitle = "Wrong"
+            scoreTitle = "Wrong thats the flag of \(countries[selectedAnswer])"
         }
         showingScore = true
     }
