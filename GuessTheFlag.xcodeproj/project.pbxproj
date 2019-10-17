@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10878C492358ED6E0084E76B /* FlagImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10878C482358ED6E0084E76B /* FlagImageView.swift */; };
 		10FFD4E7235365040002CC7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFD4E6235365040002CC7A /* AppDelegate.swift */; };
 		10FFD4E9235365040002CC7A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFD4E8235365040002CC7A /* SceneDelegate.swift */; };
 		10FFD4EB235365040002CC7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FFD4EA235365040002CC7A /* ContentView.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10878C482358ED6E0084E76B /* FlagImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagImageView.swift; sourceTree = "<group>"; };
 		10FFD4E3235365040002CC7A /* GuessTheFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessTheFlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10FFD4E6235365040002CC7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10FFD4E8235365040002CC7A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10878C472358ED5B0084E76B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				10FFD4EA235365040002CC7A /* ContentView.swift */,
+				10878C482358ED6E0084E76B /* FlagImageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		10FFD4DA235365040002CC7A = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +67,9 @@
 		10FFD4E5235365040002CC7A /* GuessTheFlag */ = {
 			isa = PBXGroup;
 			children = (
+				10878C472358ED5B0084E76B /* View */,
 				10FFD4E6235365040002CC7A /* AppDelegate.swift */,
 				10FFD4E8235365040002CC7A /* SceneDelegate.swift */,
-				10FFD4EA235365040002CC7A /* ContentView.swift */,
 				10FFD4EC2353650A0002CC7A /* Assets.xcassets */,
 				10FFD4F12353650A0002CC7A /* LaunchScreen.storyboard */,
 				10FFD4F42353650A0002CC7A /* Info.plist */,
@@ -148,6 +159,7 @@
 			files = (
 				10FFD4E7235365040002CC7A /* AppDelegate.swift in Sources */,
 				10FFD4E9235365040002CC7A /* SceneDelegate.swift in Sources */,
+				10878C492358ED6E0084E76B /* FlagImageView.swift in Sources */,
 				10FFD4EB235365040002CC7A /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

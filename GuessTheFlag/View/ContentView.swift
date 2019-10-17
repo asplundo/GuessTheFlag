@@ -26,11 +26,7 @@ struct ContentView: View {
                         self.selectedAnswer = number
                         self.flagTapped()
                     }) {
-                        Image(self.countries[number])
-                            .renderingMode(.original)
-                        .clipShape(Capsule())
-                        .overlay(Capsule().stroke(Color.black, lineWidth: 1))
-                        .shadow(color: .black, radius: 2)
+                        FlagImageView(assetsName: self.countries[number])
                     }
                 }
                 HStack {
