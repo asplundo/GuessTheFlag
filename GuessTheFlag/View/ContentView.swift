@@ -4,7 +4,7 @@ struct ContentView: View {
     
     @State var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State var correctAnswer = Int.random(in: 0...2)
-    @State var selectedAnswer = 0
+    @State var selectedAnswer = -1
     @State private var showingScore = false
     @State private var scoreTitle = ""
     @State private var score = 0
@@ -23,11 +23,17 @@ struct ContentView: View {
                 .frame(minWidth: 0, maxWidth: .infinity)
                 ForEach(0..<3) { number in
                     Button(action: {
-                        self.selectedAnswer = number
-                        self.flagTapped()
+                        withAnimation {
+                            self.selectedAnswer = number
+                            self.flagTapped()
+                        }
                     }) {
                         FlagImageView(assetsName: self.countries[number])
                     }
+                    .rotation3DEffect(.degrees(self.degreesForAnswer(number: number)), axis: (x: 0, y: 0, z: 1))
+                    .opacity(self.opacityForAnswer(number: number))
+                    .blur(radius: self.blurForAnswer(number: number))
+                    
                 }
                 HStack {
                     Text("Score: ")
@@ -47,6 +53,38 @@ struct ContentView: View {
         }
     }
     
+    func degreesForAnswer(number: Int) -> Double {
+        if isSelectedAnswer(number: number) {
+            return 360
+        }
+        return 0
+    }
+    
+    func opacityForAnswer(number: Int) -> Double {
+        guard selectedAnswer >= 0 else {
+            return 1
+        }
+        if isSelectedAnswer(number: number) {
+            return 1
+        } else {
+            return 0.25
+        }
+    }
+    
+    func blurForAnswer(number: Int) -> CGFloat {
+        guard selectedAnswer >= 0 else {
+            return 0
+        }
+        if selectedAnswer != correctAnswer && selectedAnswer == number {
+            return 5
+        }
+        return 0
+    }
+    
+    func isSelectedAnswer(number: Int) -> Bool {
+        return selectedAnswer == correctAnswer && correctAnswer == number
+    }
+    
     func flagTapped() {
         if selectedAnswer == correctAnswer {
             scoreTitle = "correct"
@@ -58,8 +96,10 @@ struct ContentView: View {
     }
     
     func askQuestion() {
+        selectedAnswer = -1
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        
     }
 }
 
