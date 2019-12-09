@@ -3,6 +3,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
+        
     @State var correctAnswer = Int.random(in: 0...2)
     @State var selectedAnswer = -1
     @State private var showingScore = false
